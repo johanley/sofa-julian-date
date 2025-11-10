@@ -8,7 +8,7 @@ Such restrictions are quite common for software that computes Julian date.
 
 **This small project is an experiment in removing that restriction.**
 
-The algorithm used by SOFA for Julian date calculation is defined in the *Explanatory Supplement*, 2nd edition, 2006, <a href='https://archive.org/details/explanatorysuppl00pken/page/606/mode/2up'>page 606</a>.
+The algorithm used by SOFA for Julian date calculation is defined in the *Explanatory Supplement* (2006), <a href='https://archive.org/details/explanatorysuppl00pken/page/606/mode/2up'>page 606</a>.
 That algorithm dates from 1970.
 
 Fundamental astronomy has made giant strides since 1970:
@@ -52,7 +52,7 @@ Bug reports about negative Julian dates in general:
 
 ## Archeology
 
-A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM* is similar in nature to the algorithm stated in the *Explanatory Supplement*, but it's not the same (at least superficially):
+A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM* is similar in nature to the algorithm stated in the *Explanatory Supplement* 2006, but it's not the same (at least superficially):
 
 https://dl.acm.org/doi/pdf/10.1145/364096.364097
 
