@@ -8,9 +8,8 @@ Such restrictions are quite common for software that computes Julian date.
 
 **This small project is an experiment in removing that restriction.**
 
-The algorithm used by SOFA for Julian date calculation is defined in the *Explanatory Supplement* (1992), page 604.
-The *Explanatory Supplement* (2006), <a href='https://archive.org/details/explanatorysuppl00pken/page/606/mode/2up'>page 606</a> has 
-an algorithm that is apparently different from the one used in SOFA. 
+The algorithm used by SOFA for Julian date calculation is defined in the *Explanatory Supplement* (1992), <a href='https://archive.org/details/explanatorysuppl0003unse/page/604/mode/2up'>page 604</a>. The *Explanatory Supplement* (2006), <a href='https://archive.org/details/explanatorysuppl00pken/page/604/mode/2up'>page 604</a> has the same algorithm.
+However, in the SOFA code, cal2Jd is not superficially the same as the algo stated in the *Explanatory Supplement* 1992/2006.
 
 Fundamental astronomy has made giant strides in the past decades:
 - measurements of stellar positions, proper motions, and radial velocities from instruments such as GAIA are remarkably precise.
@@ -53,9 +52,7 @@ Bug reports about negative Julian dates in general:
 
 ## Archeology
 
-A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM* is similar in nature to the algorithm stated in the *Explanatory Supplement* 2006, but it's not the same (at least superficially):
+A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM* is similar in nature to the algorithm stated in the *Explanatory Supplement* 1992/2006, but it's not the same (at least superficially):
 
 https://dl.acm.org/doi/pdf/10.1145/364096.364097
 
-The exact algorithm in the *Explanatory Supplement* doesn't seem to have been published in a paper anywhere, and is 
-referenced as a *personal communication*.
