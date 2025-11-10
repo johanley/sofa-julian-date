@@ -52,9 +52,9 @@ Bug reports about negative Julian dates in general:
 
 ## Archeology
 
-A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM*:
+A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM* is similar in nature to the algorithm stated in the *Explanatory Supplement*, but it's not the same (at least superficially):
 
 https://dl.acm.org/doi/pdf/10.1145/364096.364097
 
-The exact algorithm in the *Explanatory Supplement* doesn't seem to have been published in a paper anywhere.
-It's referenced as a *personal communication*.
+The exact algorithm in the *Explanatory Supplement* doesn't seem to have been published in a paper anywhere, and is 
+referenced as a *personal communication*.
