@@ -43,3 +43,16 @@ run-tests.exe
 run-tests-results.txt
 - the output to `stdout` of running the tests.
 
+# Bug Reports 
+
+Bug reports about negative Julian dates in general:
+-  https://github.com/astropy/astropy/issues/9231   
+-  https://github.com/Unidata/netcdf4-python/issues/584
+
+# Archeology
+
+A 1968 paper in the *Communications of the ACM* with the original algorithm? 
+Or is it from 1970?
+
+https://dl.acm.org/doi/pdf/10.1145/364096.364097
+

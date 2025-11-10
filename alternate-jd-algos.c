@@ -16,10 +16,6 @@
  Roughly speaking, these alternate implementations simply 'count the cycles', starting with largest cycles first.
 
  Both SOFA's implementations and these alternate implementations are for the Gregorian calendar.
-
-Q: should I use fixed-width types? 
- The <stdint.h> header introduced fixed-width integer types like 
- int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t, and uint64_t.
 */
 
 static const int NORMAL_YEAR_LEN = 365;

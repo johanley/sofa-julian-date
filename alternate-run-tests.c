@@ -12,19 +12,6 @@
  In PowerShell on Windows, in the current directory:
    gcc $(Get-ChildItem -Path *.c -Name) -std=c99 -Wall -Werror -Wpedantic -o run_tests.exe
    ./run_tests.exe
-
-   Bug reports about negative Julian dates:
-https://github.com/astropy/astropy/issues/9231   
-https://github.com/Unidata/netcdf4-python/issues/584
-
-Should I rebase to match SOFA-style?
-"That's because the SOFA code is chockfull of code such as (date1-DJ00)+date2 where DJ00 is 2451545.0. 
-This means nanosecond accuracy was lost on 22 February 2000, and microsecond level accuracy will be lost on 18 September 2142. 
-I updated my answer. – 
-David Hammen  CommentedMar 4, 2023 at 15:21"
-
-1968 paper with the original algorithm? Or is it from 1970?
-https://dl.acm.org/doi/pdf/10.1145/364096.364097
 */
 
 int num_errors = 0;
