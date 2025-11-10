@@ -56,4 +56,5 @@ A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM*:
 
 https://dl.acm.org/doi/pdf/10.1145/364096.364097
 
-Is this the original algorithm? It's not from 1970, and it's at least superficially different from the one stated in the *Explanatory Supplement*.
+The exact algorithm in the *Explanatory Supplement* doesn't seem to have been published in a paper anywhere.
+It's referenced as a *personal communication*.
