@@ -6,9 +6,9 @@
 /*
  Alternate algorithms for SOFA's iaucal2jd and iaujd2Cal functions, implemented in C99.
 
- These alternate algorithms aren't restricted to JD >= 0.
+ These alternate algorithms don't fail for dates before -4799 January 1.
 
- Removing the JD >= 0 restriction now seems appropriate:
+ Removing the JD date-restriction now seems appropriate:
    - modern models for precession and nutation give remarkably precise results going back tens of thousands of years.
    - GAIA and other instruments yield very precise positions, proper motions, and radial velocities. 
    - Combined, these two allow the computation of stellar positions over extended time scales.
