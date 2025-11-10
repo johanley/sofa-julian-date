@@ -48,11 +48,13 @@ run-tests-results.txt
 Bug reports about negative Julian dates in general:
 -  https://github.com/astropy/astropy/issues/9231   
 -  https://github.com/Unidata/netcdf4-python/issues/584
+-  https://astronomy.stackexchange.com/questions/49790/calculation-of-julian-day-is-off-for-negative-dates
 
 ## Archeology
 
-A 1968 paper in the *Communications of the ACM* with the original algorithm? 
-Or is it from 1970?
+A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM*:
 
 https://dl.acm.org/doi/pdf/10.1145/364096.364097
 
+Is this the original algorithm? Or is it from 1970? 
+It's at least superficially different from the one stated in the *Explanatory Supplement*.
