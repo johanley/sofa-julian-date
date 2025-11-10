@@ -14,7 +14,8 @@
    ./run_tests.exe
 */
 
-int num_errors = 0;
+static int num_errors = 0;
+static int num_successful = 0;
 
 static const char *SUCCESS = "OK";
 static const char *FAILURE = " X";
@@ -25,7 +26,8 @@ static const char *ALTERNATIVE = "ALT ";
 /* Output the result of checking expected-result versus actual-result. */
 static void check_date_to_jd(double expected, double result, const char *source){
     const char* message = (expected == result) ? SUCCESS : FAILURE;
-    if (expected != result) ++num_errors;
+    short ok = expected == result;
+    !ok ? ++num_errors : ++num_successful;
     printf("%s %s Expected: %f Result: %f\n", source, message, expected, result);
 }
 
@@ -35,7 +37,7 @@ static void check_jd_to_date(int expected_y, int expected_m, int expected_d, dou
     short ok_fd = abs(expected_fd - result_fd) < __FLT_EPSILON__;
     short ok = (expected_y == result_y) &&  (expected_m == result_m) && (expected_d == result_d) && ok_fd;
     const char* message_a = ok ? SUCCESS : FAILURE;
-    if (!ok) ++num_errors;
+    !ok ? ++num_errors : ++num_successful;
     printf("%s %s Expected: %d-%d-%d %f Result: %d-%d-%d %f\n", \
         source,
         message_a, 
@@ -184,6 +186,7 @@ static void run_tests_for_both_old_and_new_algorithms(){
     //also need other data...
 
    printf("\nNum failed tests: %d\n", num_errors);
+   printf("Num successful tests: %d\n", num_successful);
 }
 
 /* (I have renamed the 'main' function found in t_sofa_c.c, in order to replace it with this 'main'.)  */
