@@ -10,7 +10,7 @@ Such restrictions are quite common for software that computes Julian date.
 
 The algorithm used by SOFA for Julian date calculation is defined in the *Explanatory Supplement* (1992), page 604.
 The *Explanatory Supplement* (2006), <a href='https://archive.org/details/explanatorysuppl00pken/page/606/mode/2up'>page 606</a> has 
-an algorithm that is apparently different from the one in 1992. 
+an algorithm that is apparently different from the one used in SOFA. 
 
 Fundamental astronomy has made giant strides in the past decades:
 - measurements of stellar positions, proper motions, and radial velocities from instruments such as GAIA are remarkably precise.
