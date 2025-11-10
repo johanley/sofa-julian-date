@@ -37,10 +37,10 @@ The files I have added are described below.
 - defines and runs unit tests
 - tests are run versus both the two original SOFA functions, and the two alternate implementations.
 
-run-tests.exe
+`run-tests.exe`
 - a Windows executable that runs the tests ./run-tests.exe
 
-run-tests-results.txt
+`run-tests-results.txt`
 - the output to `stdout` of running the tests.
 
 ## Bug Reports 
