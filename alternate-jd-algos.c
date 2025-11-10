@@ -49,8 +49,11 @@ static int days_in_complete_years(int start_year, int end_year){
    return result;
 }
 
-/* The length of the given month in days. The month-index is 1-based. */
-static int month_len(int y, int m){
+/* 
+ The length of the given month in days. The month-index is 1-based. 
+ This function is non-static, since it's used in the testing file.
+*/
+int month_len(int y, int m){
    int length = MONTH_LEN_TABLE[m - 1];
    int has_leap_day = is_leap(y) && (m == 2);
    return has_leap_day ? length + 1 : length;

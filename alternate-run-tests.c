@@ -23,27 +23,34 @@ static const char *FAILURE = " X";
 static const char *SOFA = "SOFA";
 static const char *ALTERNATIVE = "ALT ";
 
+static const int REPORT = 1;
+static const int SILENT = 0;
+
 /* Output the result of checking expected-result versus actual-result. */
-static void check_date_to_jd(double expected, double result, const char *source){
+static void check_date_to_jd(double expected, double result, const char *source, const int report){
     const char* message = (expected == result) ? SUCCESS : FAILURE;
     short ok = expected == result;
     !ok ? ++num_errors : ++num_successful;
-    printf("%s %s Expected: %f Result: %f\n", source, message, expected, result);
+    if (report){
+      printf("%s %s Expected: %f Result: %f\n", source, message, expected, result);
+    }
 }
 
 /* Output the result of checking expected-result versus actual-result. */
 static void check_jd_to_date(int expected_y, int expected_m, int expected_d, double expected_fd, 
-    int result_y, int result_m, int result_d, double result_fd, const char *source){
+    int result_y, int result_m, int result_d, double result_fd, const char *source, const int report){
     short ok_fd = abs(expected_fd - result_fd) < __FLT_EPSILON__;
     short ok = (expected_y == result_y) &&  (expected_m == result_m) && (expected_d == result_d) && ok_fd;
     const char* message_a = ok ? SUCCESS : FAILURE;
     !ok ? ++num_errors : ++num_successful;
-    printf("%s %s Expected: %d-%d-%d %f Result: %d-%d-%d %f\n", \
-        source,
-        message_a, 
-        expected_y, expected_m, expected_d, expected_fd, \
-        result_y, result_m, result_d, result_fd
-    );
+    if (report){
+        printf("%s %s Expected: %d-%d-%d %f Result: %d-%d-%d %f\n", \
+            source,
+            message_a, 
+            expected_y, expected_m, expected_d, expected_fd, \
+            result_y, result_m, result_d, result_fd
+        );
+    }
 }
 
 static void report_error(int status){
@@ -55,7 +62,7 @@ static void report_error(int status){
 /* Test converting a date in the Gregorian calendar to a Julian date. */
 static void test_yyyy_mm_dd_to_julian_date(
     int y, int m, int d, double fd, double expected_jd, 
-    int (*func)(int, int, int, double*, double*), const char *source
+    int (*func)(int, int, int, double*, double*), const char *source, int report
 ){
     //there's no fractional-day input here; this is asymmetric with respect to the complementary function, 
     //which returns a fractional-day. This means I need to add a fractional day 'manually', after the calc for the whole day
@@ -64,20 +71,20 @@ static void test_yyyy_mm_dd_to_julian_date(
     int status = func(y, m, d, &djm0, &djm); 
     report_error(status);
     double result = djm0 + djm + fd;
-    check_date_to_jd(expected_jd, result, source);
+    check_date_to_jd(expected_jd, result, source, report);
 }
 
 /** Test converting a Julian date to a date in the Gregorian calendar. */
 static void test_julian_date_to_yyyy_mm_dd(
     double jd1, double jd2, 
     int expected_y, int expected_m, int expected_d, double expected_fd, 
-    int (*func)(double, double, int*, int*, int*, double*), const char *source
+    int (*func)(double, double, int*, int*, int*, double*), const char *source, int report
 ){
     int result_y, result_m, result_d;
     double result_fd;
     int status = func(jd1, jd2, &result_y, &result_m, &result_d, &result_fd); 
     report_error(status);
-    check_jd_to_date(expected_y, expected_m, expected_d, expected_fd, result_y, result_m, result_d, result_fd, source);
+    check_jd_to_date(expected_y, expected_m, expected_d, expected_fd, result_y, result_m, result_d, result_fd, source, report);
 }
 
 /* 
@@ -86,12 +93,57 @@ static void test_julian_date_to_yyyy_mm_dd(
  Thus, a call to this function performs 4 tests in sequence.
 */ 
 static void test_both_directions(int y, int m, int d, double fd, double jd1, double jd2){
-    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, iauJd2cal, SOFA);
-    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, alternate_iauJd2cal, ALTERNATIVE);
-    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, iauCal2jd, SOFA);
-    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, alternate_iauCal2jd, ALTERNATIVE);
+    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, iauJd2cal, SOFA, REPORT);
+    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, alternate_iauJd2cal, ALTERNATIVE, REPORT);
+    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, iauCal2jd, SOFA, REPORT);
+    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, alternate_iauCal2jd, ALTERNATIVE, REPORT);
     printf("\n");
 }
+
+/* These tests aren't reported in detail. Only the count of success-fail is reported for these. */ 
+static void test_entire_year(int y, double jd_jan_0){
+    printf("Testing every day in the year: %d\n", y);
+    int day_num = 0; //1..(365|366)
+    for(int m = 1; m <= 12; ++m){
+        int num_days_in_month = month_len(y, m);
+        for(int d = 1; d <= num_days_in_month; ++d){
+            ++day_num;
+            double jd = jd_jan_0 + day_num;
+            test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, iauJd2cal, SOFA, SILENT);
+            test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, alternate_iauJd2cal, ALTERNATIVE, SILENT);
+            test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, iauCal2jd, SOFA, SILENT);
+            test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, alternate_iauCal2jd, ALTERNATIVE, SILENT);
+        }
+    }
+}
+
+/* Test every day of the year for years near the year 0. (These cases are easy to calculate manually.) */ 
+static void test_small_years() {
+    double base = 1721058.5;
+    test_entire_year(-9, base - 2*366 - 7*365);
+    test_entire_year(-8, base - 2*366 - 6*365);
+    test_entire_year(-7, base - 1*366 - 6*365);
+    test_entire_year(-6, base - 1*366 - 5*365);
+    test_entire_year(-5, base - 1*366 - 4*365);
+    test_entire_year(-4, base - 1*366 - 3*365);
+    test_entire_year(-3, base - 0*366 - 3*365);
+    test_entire_year(-2, base - 0*366 - 2*365);
+    test_entire_year(-1, base - 0*366 - 1*365);
+    test_entire_year(0, base + 0*366 + 0*365);
+    test_entire_year(1, base + 1*366 + 0*365);
+    test_entire_year(2, base + 1*366 + 1*365);
+    test_entire_year(3, base + 1*366 + 2*365);
+    test_entire_year(4, base + 1*366 + 3*365);
+    test_entire_year(5, base + 2*366 + 3*365);
+    test_entire_year(6, base + 2*366 + 4*365);
+    test_entire_year(7, base + 2*366 + 5*365);
+    test_entire_year(8, base + 2*366 + 6*365);
+    test_entire_year(9, base + 3*366 + 6*365);
+    test_entire_year(10, base + 3*366 + 7*365);
+    test_entire_year(11, base + 3*366 + 8*365);
+    test_entire_year(12, base + 3*366 + 9*365);
+  }
+
 
 /* 
  Run all tests for conversions from calendar-date to Julian date, and vice versa. 
@@ -177,16 +229,15 @@ static void run_tests_for_both_old_and_new_algorithms(){
     printf("\nThe origin of the Julian date is -4712-01-01 12h, in the Julian calendar. That is -4713-11-24 in the Gregorian calendar.\n");
     test_both_directions(-4713, 11, 24, 0.5, 0.0, 0.0);
 
-     printf("\nThe first date supported by the SOFA algorithm: -4799-01-01.\n");
+    printf("\nThe first date supported by the SOFA algorithm: -4799-01-01.\n");
     test_both_directions(-4799, 1, 1, 0.0, -31738.5, 0.0);
 
-    //complete years, in the range -9..+12
-    //for these, it's easy to calculate the answer, given JD for Jan 0 in year 0.
-    //I just need to do the calc for 'is-leap-year', as part of the algo
-    //also need other data...
+    printf("\nTest entire years near the year 0.\n");
+    printf("There's no detailed reporting in these cases.\n");
+    test_small_years();
 
-   printf("\nNum failed tests: %d\n", num_errors);
-   printf("Num successful tests: %d\n", num_successful);
+    printf("\nNum failed tests: %d\n", num_errors);
+    printf("Num successful tests: %d\n", num_successful);
 }
 
 /* (I have renamed the 'main' function found in t_sofa_c.c, in order to replace it with this 'main'.)  */
