@@ -1,4 +1,4 @@
-## sofa-julian-date
+# sofa-julian-date
 
 <a href='https://www.iausofa.org/'>SOFA</a> is a library from the IAU (International Astronomical Union) for fundamental astronomical calculations.
 
@@ -17,7 +17,7 @@ Fundamental astronomy has made giant strides since 1970:
 
 Perhaps it's time to update the Julian date algorithm, and drop the restriction on dates.
 
-# What I've Done
+## What I've Done
 
 The SOFA code is completely intact, except for one small change: the `main` function in `t_sofa_c.c` has been renamed to `main_disabled`. 
 This is simply because I want to implement my own `main` function for running unit tests.
@@ -43,13 +43,13 @@ run-tests.exe
 run-tests-results.txt
 - the output to `stdout` of running the tests.
 
-# Bug Reports 
+## Bug Reports 
 
 Bug reports about negative Julian dates in general:
 -  https://github.com/astropy/astropy/issues/9231   
 -  https://github.com/Unidata/netcdf4-python/issues/584
 
-# Archeology
+## Archeology
 
 A 1968 paper in the *Communications of the ACM* with the original algorithm? 
 Or is it from 1970?
