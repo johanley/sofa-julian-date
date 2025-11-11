@@ -232,6 +232,9 @@ static void run_tests_for_both_old_and_new_algorithms(){
     printf("\nThe first date supported by the SOFA algorithm: -4799-01-01.\n");
     test_both_directions(-4799, 1, 1, 0.0, -31738.5, 0.0);
 
+    printf("\nNum failed tests: %d\n", num_errors);
+    printf("Num successful tests: %d\n", num_successful);
+
     printf("\nTest entire years near the year 0.\n");
     printf("There's no detailed reporting in these cases.\n");
     test_small_years();

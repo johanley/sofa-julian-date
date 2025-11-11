@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /*
- Alternate algorithms for SOFA's iaucal2jd and iaujd2Cal functions, implemented in C99.
+ Alternate algorithms for SOFA's iauJd2cal and iauCal2jd functions, implemented in C99.
 
  These alternate algorithms don't fail for dates before -4799 January 1.
 
