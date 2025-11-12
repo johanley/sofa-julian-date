@@ -50,7 +50,7 @@ Bug reports about negative Julian dates in general:
 -  https://github.com/Unidata/netcdf4-python/issues/584
 -  https://astronomy.stackexchange.com/questions/49790/calculation-of-julian-day-is-off-for-negative-dates
 
-## Archeology
+## Original Algorithm
 
 A 1968 paper by Fliegel and van Flandern in the *Communications of the ACM* is similar in nature to the algorithm stated in the *Explanatory Supplement* 1992/2006, but it's not the same (at least superficially):
 
