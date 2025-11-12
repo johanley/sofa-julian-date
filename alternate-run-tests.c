@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 #include "sofa.h"
 #include "alternate-headers.h"
 
@@ -244,6 +245,11 @@ static void run_tests_for_both_old_and_new_algorithms(){
 }
 
 /* (I have renamed the 'main' function found in t_sofa_c.c, in order to replace it with this 'main'.)  */
-int main(){
+int main(void){
+  clock_t start = clock();
   run_tests_for_both_old_and_new_algorithms();
+  clock_t end = clock();
+
+  double elapsed = 1000.0 * (end - start) / CLOCKS_PER_SEC;
+  printf("\nElapsed time %d milliseconds.\n", (int)elapsed);
 }
