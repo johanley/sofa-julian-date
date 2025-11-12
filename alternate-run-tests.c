@@ -119,7 +119,7 @@ static void test_entire_year(int y, double jd_jan_0){
 }
 
 /* Test every day of the year for years near the year 0. (These cases are easy to calculate manually.) */ 
-static void test_small_years() {
+static void test_small_years(void) {
     double base = 1721058.5;
     test_entire_year(-9, base - 2*366 - 7*365);
     test_entire_year(-8, base - 2*366 - 6*365);
@@ -150,7 +150,7 @@ static void test_small_years() {
  Run all tests for conversions from calendar-date to Julian date, and vice versa. 
  This tests both the original SOFA algorithms, and the 2 alternate algorithms implemented in alternate-algos.c.
 */
-static void run_tests_for_both_old_and_new_algorithms(){
+static void run_tests_for_both_old_and_new_algorithms(void){
     printf("SOFA's tests.\n");
     test_both_directions(2003, 6, 1, 0.0, 2400000.5, 52791.0);
 
@@ -244,12 +244,17 @@ static void run_tests_for_both_old_and_new_algorithms(){
     printf("Num successful tests: %d\n", num_successful);
 }
 
-/* (I have renamed the 'main' function found in t_sofa_c.c, in order to replace it with this 'main'.)  */
-int main(void){
+static void add_timing (void (*func)(void)){
   clock_t start = clock();
-  run_tests_for_both_old_and_new_algorithms();
+  func();
   clock_t end = clock();
 
   double elapsed = 1000.0 * (end - start) / CLOCKS_PER_SEC;
   printf("\nElapsed time: %d milliseconds.\n", (int)elapsed);
+}
+
+/* I have renamed the 'main' function found in t_sofa_c.c, in order to replace it with this 'main'.  */
+int main(void){
+  add_timing(run_tests_for_both_old_and_new_algorithms);
+  return 0;
 }

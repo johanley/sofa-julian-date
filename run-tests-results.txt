@@ -264,5 +264,5 @@ Testing every day in the year: 12
 Num failed tests: 0
 Num successful tests: 32316
 
-Elapsed time: 8 milliseconds.
-PS C:\johanley\ProjectsVSCode\sofa-julian-date>
+Elapsed time: 9 milliseconds.
+PS C:\johanley\ProjectsVSCode\sofa-julian-date> 
