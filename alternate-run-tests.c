@@ -251,5 +251,5 @@ int main(void){
   clock_t end = clock();
 
   double elapsed = 1000.0 * (end - start) / CLOCKS_PER_SEC;
-  printf("\nElapsed time %d milliseconds.\n", (int)elapsed);
+  printf("\nElapsed time: %d milliseconds.\n", (int)elapsed);
 }
