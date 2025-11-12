@@ -6,7 +6,7 @@ The SOFA library has functions for doing Julian date calculations.
 Those functions are restricted to dates that are not before -4799 January 1 (in the Gregorian calendar).
 Such restrictions are quite common for software that computes Julian date.
 
-**This small project is an experiment in removing that restriction.**
+**This small project is an experiment in removing that restriction on dates.**
 
 The algorithm used by SOFA for Julian date calculation is defined in the *Explanatory Supplement* (1992), <a href='https://archive.org/details/explanatorysuppl0003unse/page/604/mode/2up'>page 604</a>. The *Explanatory Supplement* (2006), <a href='https://archive.org/details/explanatorysuppl00pken/page/604/mode/2up'>page 604</a> has the same algorithm.
 (Curiously, in the SOFA code, `iauCal2jd` is not superficially the same as the algo stated in the *Explanatory Supplement* 1992/2006.)
