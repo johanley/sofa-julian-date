@@ -10,9 +10,9 @@
 
  Implemented in C99.
 
- In PowerShell on Windows, in the current directory:
+ An example of running the tests in PowerShell on Windows, in the current directory:
    gcc $(Get-ChildItem -Path *.c -Name) -std=c99 -Wall -Werror -Wpedantic -o run_tests.exe
-   ./run_tests.exe
+   ./run_tests.exe 
 */
 
 static int num_errors = 0;
@@ -244,6 +244,7 @@ static void run_tests_for_both_old_and_new_algorithms(void){
     printf("Num successful tests: %d\n", num_successful);
 }
 
+/* Wrap the execution of a void function with simple timing operations. */
 static void add_timing (void (*func)(void)){
   clock_t start = clock();
   func();

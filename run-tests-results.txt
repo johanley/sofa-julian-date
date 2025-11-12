@@ -1,5 +1,5 @@
-PS C:\johanley\ProjectsVSCode\sofa-julian-date>    gcc $(Get-ChildItem -Path *.c -Name) -std=c99 -Wall -Werror -Wpedantic -o run_tests.exe
-PS C:\johanley\ProjectsVSCode\sofa-julian-date> .\run_tests.exe
+PS C:\johanley\ProjectsVSCode\sofa-julian-date> gcc $(Get-ChildItem -Path *.c -Name) -std=c99 -Wall -Werror -Wpedantic -o run_tests.exe
+PS C:\johanley\ProjectsVSCode\sofa-julian-date> ./run_tests.exe 
 SOFA's tests.
 SOFA OK Expected: 2003-6-1 0.000000 Result: 2003-6-1 0.000000
 ALT  OK Expected: 2003-6-1 0.000000 Result: 2003-6-1 0.000000
@@ -264,5 +264,5 @@ Testing every day in the year: 12
 Num failed tests: 0
 Num successful tests: 32316
 
-Elapsed time: 9 milliseconds.
-PS C:\johanley\ProjectsVSCode\sofa-julian-date> 
+Elapsed time: 12 milliseconds.
+PS C:\johanley\ProjectsVSCode\sofa-julian-date>
