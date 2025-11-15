@@ -90,8 +90,8 @@ static void test_julian_date_to_yyyy_mm_dd(
 
 /* Test the behaviour of the alternate implementations only for dates that precede JD = 0. */ 
 static void test_both_directions_ancient_history(int y, int m, int d, double fd, double jd1, double jd2){
-    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, alternate_iauJd2cal, ALTERNATIVE, REPORT);
-    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, alternate_iauCal2jd, ALTERNATIVE, REPORT);
+    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, terse_alternate_iauJd2cal, ALTERNATIVE, REPORT);
+    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, terse_alternate_iauCal2jd, ALTERNATIVE, REPORT);
     printf("\n");
 }
 
@@ -102,9 +102,9 @@ static void test_both_directions_ancient_history(int y, int m, int d, double fd,
 */ 
 static void test_both_directions(int y, int m, int d, double fd, double jd1, double jd2){
     test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, iauJd2cal, SOFA, REPORT);
-    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, alternate_iauJd2cal, ALTERNATIVE, REPORT);
+    test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, terse_alternate_iauJd2cal, ALTERNATIVE, REPORT);
     test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, iauCal2jd, SOFA, REPORT);
-    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, alternate_iauCal2jd, ALTERNATIVE, REPORT);
+    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, terse_alternate_iauCal2jd, ALTERNATIVE, REPORT);
     printf("\n");
 }
 
@@ -113,14 +113,14 @@ static void test_entire_year(int y, double jd_jan_0){
     printf("Testing every day in the year: %d\n", y);
     int day_num = 0; //1..(365|366)
     for(int m = 1; m <= 12; ++m){
-        int num_days_in_month = month_len(y, m);
+        int num_days_in_month = the_month_len(y, m);
         for(int d = 1; d <= num_days_in_month; ++d){
             ++day_num;
             double jd = jd_jan_0 + day_num;
             test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, iauJd2cal, SOFA, SILENT);
-            test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, alternate_iauJd2cal, ALTERNATIVE, SILENT);
+            test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, terse_alternate_iauJd2cal, ALTERNATIVE, SILENT);
             test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, iauCal2jd, SOFA, SILENT);
-            test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, alternate_iauCal2jd, ALTERNATIVE, SILENT);
+            test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, terse_alternate_iauCal2jd, ALTERNATIVE, SILENT);
         }
     }
 }
@@ -161,25 +161,8 @@ static void run_tests_for_both_old_and_new_algorithms(void){
     printf("SOFA's tests.\n");
     test_both_directions(2003, 6, 1, 0.0, 2400000.5, 52791.0);
 
-    //test_julian_date_to_yyyy_mm_dd(2400000.5, 50123.9999, 1996, 2, 10, 0.9999);
-
-    test_both_directions(1996, 2, 11, 0.0, 2400000.5, 50124.0);  //my modification of SOFA's test, in order to use whole days
-    /*
-    FROM t_sofa_c.c:
-
-    dj1 = 2400000.5;
-    dj2 = 50123.9999;
-    j = iauJd2cal(dj1, dj2, &iy, &im, &id, &fd);
-    viv(iy, 1996, "iauJd2cal", "y", status);
-    viv(im, 2, "iauJd2cal", "m", status);
-    viv(id, 10, "iauJd2cal", "d", status);
-    vvd(fd, 0.9999, 1e-7, "iauJd2cal", "fd", status);
-    viv(j, 0, "iauJd2cal", "j", status);
-
-    j = iauCal2jd(2003, 06, 01, &djm0, &djm);
-    vvd(djm0, 2400000.5, 0.0, "iauCal2jd", "djm0", status);
-    vvd(djm,    52791.0, 0.0, "iauCal2jd", "djm", status);
-    */
+    //a modification of SOFA's test, in order to use whole days
+    test_both_directions(1996, 2, 11, 0.0, 2400000.5, 50124.0);  
 
     printf("\nExplanatory Supplement, 1961, page  437.\n");
     test_both_directions(1500, 1, 1, 0.0, 2268923.5, 0.0);

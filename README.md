@@ -26,9 +26,9 @@ The SOFA project uses C89, but I have used C99 in this project.
 
 The files I have added are described below.
 
-`alternate-jd-algos.c` defines two alternate implementations for two corresponding SOFA functions:
-- alternate_iauCal2jd
-- alternate_iauJd2cal
+`alternate-cal2jd.c` defines an alternate implementation for the `iauCal2jd` function.
+
+`alternate-jd2cal.c` defines an alternate implementation for the `iauJd2cal` function.
 
 `alternate-headers.h` :
 - standard C header file, with prototypes for the two alternate functions.

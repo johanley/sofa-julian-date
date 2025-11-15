@@ -1,3 +1,8 @@
+PS C:\johanley\ProjectsVSCode\sofa-julian-date> date
+
+Saturday, November 15, 2025 9:47:20 AM
+
+
 PS C:\johanley\ProjectsVSCode\sofa-julian-date> gcc $(Get-ChildItem -Path *.c -Name) -std=c99 -Wall -Werror -Wpedantic -o run_tests.exe
 PS C:\johanley\ProjectsVSCode\sofa-julian-date>  ./run_tests.exe
 SOFA's tests.
@@ -326,5 +331,5 @@ Testing every day in the year: 12
 Num failed tests: 0
 Num successful tests: 32356
 
-Elapsed time: 19 milliseconds.
+Elapsed time: 11 milliseconds.
 PS C:\johanley\ProjectsVSCode\sofa-julian-date>
