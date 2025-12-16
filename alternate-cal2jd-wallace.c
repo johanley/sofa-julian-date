@@ -36,12 +36,12 @@ int iauCal2jdWallace(int iy, int im, int id, double *djm0, double *djm)
 
 /* Return result. */
    my = (im - 14) / 12;
-   iypmy = (long) (iy%400 + my);    //CHANGED
+   iypmy = iy%400 + my;    //CHANGED
    *djm0 = DJM0;
-   *djm = (double)((1461L * (iypmy + 4800L)) / 4L
-                 + (367L * (long) (im - 2 - 12 * my)) / 12L
-                 - (3L * ((iypmy + 4900L) / 100L)) / 4L
-                 + (long) id - 2432076L + (long)(iy/400) * 146097L);  //CHANGED
+   *djm = (double)((1461 * (iypmy + 4800)) / 4
+                 + (367 * (im - 2 - 12 * my)) / 12
+                 - (3 * ((iypmy + 4900) / 100)) / 4
+                 + id - 2432076L + (iy/400) * 146097L);  //CHANGED 
 
 /* Return status. */
    return j;
