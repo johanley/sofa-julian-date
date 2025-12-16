@@ -92,6 +92,8 @@ static void test_julian_date_to_yyyy_mm_dd(
 static void test_both_directions_ancient_history(int y, int m, int d, double fd, double jd1, double jd2){
     test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, terse_alternate_iauJd2cal, ALTERNATIVE, REPORT);
     test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, terse_alternate_iauCal2jd, ALTERNATIVE, REPORT);
+
+    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, iauCal2jdWallace, ALTERNATIVE, REPORT);
     printf("\n");
 }
 
@@ -123,7 +125,7 @@ static void test_entire_year(int y, double jd_jan_0){
             test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, terse_alternate_iauJd2cal, ALTERNATIVE, SILENT);
             test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, iauCal2jd, SOFA, SILENT);
             test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, terse_alternate_iauCal2jd, ALTERNATIVE, SILENT);
-            
+
             test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, iauCal2jdWallace, ALTERNATIVE, SILENT);
         }
     }
@@ -245,9 +247,16 @@ static void run_tests_for_both_old_and_new_algorithms(void){
     test_both_directions_ancient_history(-4719, 1, 1, 0.5, -327.0 - 365 * 5.0 - 366 * 1.0, 0.0);
     test_both_directions_ancient_history(-4720, 1, 1, 0.5, -327.0 - 365 * 5.0 - 366 * 2.0, 0.0);
     test_both_directions_ancient_history(-4721, 1, 1, 0.5, -327.0 - 365 * 6.0 - 366 * 2.0, 0.0);
+
     test_both_directions_ancient_history(-4800, 1, 1, 0.5, -327.0 - 365 * 65.0 - 366 * 22.0, 0.0); //leap century year
     test_both_directions_ancient_history(-4801, 1, 1, 0.5, -327.0 - 365 * 66.0 - 366 * 22.0, 0.0);
     test_both_directions_ancient_history(-4900, 1, 1, 0.5, -327.0 - 365 * (75.0 + 66.0) - 366 * (24.0 + 22.0), 0.0); //not a leap year
+
+    test_both_directions_ancient_history(-4901, 1, 1, 0.5, -327.0 - 365 * (75.0 + 66.0 + 1.0) - 366 * (24.0 + 22.0), 0.0); 
+    test_both_directions_ancient_history(-5000, 1, 1, 0.5, -327.0 - 365 * (75.0 + 66.0 + 76.0)  - 366 * (24.0 + 22.0 + 24.0), 0.0);  // not a leap year
+    test_both_directions_ancient_history(-5100, 1, 1, 0.5, -327.0 - 365 * (75.0 + 66.0 + 76.0 + 76.0)  - 366 * (24.0 + 22.0 + 24.0 + 24.0), 0.0);  // not a leap year
+    test_both_directions_ancient_history(-5200, 1, 1, 0.5, -327.0 - 365 * (75.0 + 66.0 + 76.0 + 76.0 + 75.0)  - 366 * (24.0 + 22.0 + 24.0 + 24.0 + 25.0), 0.0);  // leap century year
+
 
     printf("\nNum failed tests: %d\n", num_errors);
     printf("Num successful tests: %d\n", num_successful);

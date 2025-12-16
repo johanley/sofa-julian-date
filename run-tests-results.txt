@@ -1,6 +1,6 @@
 PS C:\johanley\ProjectsVSCode\sofa-julian-date> date
 
-Tuesday, December 16, 2025 3:52:02 PM
+Tuesday, December 16, 2025 4:37:46 PM
 
 
 PS C:\johanley\ProjectsVSCode\sofa-julian-date>    gcc $(Get-ChildItem -Path *.c -Name) -std=c99 -Wall -Werror -Wpedantic -o run_tests.exe
@@ -284,67 +284,103 @@ ALT  OK Expected: -31738.500000 Result: -31738.500000
 Test dates near JD = 0. Test only the alternate implementations.
 ALT  OK Expected: -4712-1-1 0.500000 Result: -4712-1-1 0.500000
 ALT  OK Expected: 38.000000 Result: 38.000000
+ALT  OK Expected: 38.000000 Result: 38.000000
 
 ALT  OK Expected: -4712-1-1 0.500000 Result: -4712-1-1 0.500000
+ALT  OK Expected: 38.000000 Result: 38.000000
 ALT  OK Expected: 38.000000 Result: 38.000000
 
 ALT  OK Expected: -4713-12-31 0.500000 Result: -4713-12-31 0.500000
 ALT  OK Expected: 37.000000 Result: 37.000000
+ALT  OK Expected: 37.000000 Result: 37.000000
 
 ALT  OK Expected: -4713-12-1 0.500000 Result: -4713-12-1 0.500000
+ALT  OK Expected: 7.000000 Result: 7.000000
 ALT  OK Expected: 7.000000 Result: 7.000000
 
 ALT  OK Expected: -4713-11-30 0.500000 Result: -4713-11-30 0.500000
 ALT  OK Expected: 6.000000 Result: 6.000000
+ALT  OK Expected: 6.000000 Result: 6.000000
 
 ALT  OK Expected: -4713-11-24 0.500000 Result: -4713-11-24 0.500000
+ALT  OK Expected: 0.000000 Result: 0.000000
 ALT  OK Expected: 0.000000 Result: 0.000000
 
 ALT  OK Expected: -4713-11-24 0.000000 Result: -4713-11-24 0.000000
 ALT  OK Expected: -0.500000 Result: -0.500000
+ALT  OK Expected: -0.500000 Result: -0.500000
 
 ALT  OK Expected: -4713-11-23 0.000000 Result: -4713-11-23 0.000000
+ALT  OK Expected: -1.500000 Result: -1.500000
 ALT  OK Expected: -1.500000 Result: -1.500000
 
 ALT  OK Expected: -4713-1-1 0.500000 Result: -4713-1-1 0.500000
 ALT  OK Expected: -327.000000 Result: -327.000000
+ALT  OK Expected: -327.000000 Result: -327.000000
 
 ALT  OK Expected: -4714-1-1 0.500000 Result: -4714-1-1 0.500000
+ALT  OK Expected: -692.000000 Result: -692.000000
 ALT  OK Expected: -692.000000 Result: -692.000000
 
 ALT  OK Expected: -4715-1-1 0.500000 Result: -4715-1-1 0.500000
 ALT  OK Expected: -1057.000000 Result: -1057.000000
+ALT  OK Expected: -1057.000000 Result: -1057.000000
 
 ALT  OK Expected: -4716-1-1 0.500000 Result: -4716-1-1 0.500000
+ALT  OK Expected: -1423.000000 Result: -1423.000000
 ALT  OK Expected: -1423.000000 Result: -1423.000000
 
 ALT  OK Expected: -4717-1-1 0.500000 Result: -4717-1-1 0.500000
 ALT  OK Expected: -1788.000000 Result: -1788.000000
+ALT  OK Expected: -1788.000000 Result: -1788.000000
 
 ALT  OK Expected: -4718-1-1 0.500000 Result: -4718-1-1 0.500000
+ALT  OK Expected: -2153.000000 Result: -2153.000000
 ALT  OK Expected: -2153.000000 Result: -2153.000000
 
 ALT  OK Expected: -4719-1-1 0.500000 Result: -4719-1-1 0.500000
 ALT  OK Expected: -2518.000000 Result: -2518.000000
+ALT  OK Expected: -2518.000000 Result: -2518.000000
 
 ALT  OK Expected: -4720-1-1 0.500000 Result: -4720-1-1 0.500000
+ALT  OK Expected: -2884.000000 Result: -2884.000000
 ALT  OK Expected: -2884.000000 Result: -2884.000000
 
 ALT  OK Expected: -4721-1-1 0.500000 Result: -4721-1-1 0.500000
 ALT  OK Expected: -3249.000000 Result: -3249.000000
+ALT  OK Expected: -3249.000000 Result: -3249.000000
 
 ALT  OK Expected: -4800-1-1 0.500000 Result: -4800-1-1 0.500000
+ALT  OK Expected: -32104.000000 Result: -32104.000000
 ALT  OK Expected: -32104.000000 Result: -32104.000000
 
 ALT  OK Expected: -4801-1-1 0.500000 Result: -4801-1-1 0.500000
 ALT  OK Expected: -32469.000000 Result: -32469.000000
+ALT  OK Expected: -32469.000000 Result: -32469.000000
 
 ALT  OK Expected: -4900-1-1 0.500000 Result: -4900-1-1 0.500000
 ALT  OK Expected: -68628.000000 Result: -68628.000000
+ALT  OK Expected: -68628.000000 Result: -68628.000000
+
+ALT  OK Expected: -4901-1-1 0.500000 Result: -4901-1-1 0.500000
+ALT  OK Expected: -68993.000000 Result: -68993.000000
+ALT  OK Expected: -68993.000000 Result: -68993.000000
+
+ALT  OK Expected: -5000-1-1 0.500000 Result: -5000-1-1 0.500000
+ALT  OK Expected: -105152.000000 Result: -105152.000000
+ALT  OK Expected: -105152.000000 Result: -105152.000000
+
+ALT  OK Expected: -5100-1-1 0.500000 Result: -5100-1-1 0.500000
+ALT  OK Expected: -141676.000000 Result: -141676.000000
+ALT  OK Expected: -141676.000000 Result: -141676.000000
+
+ALT  OK Expected: -5200-1-1 0.500000 Result: -5200-1-1 0.500000
+ALT  OK Expected: -178201.000000 Result: -178201.000000
+ALT  OK Expected: -178201.000000 Result: -178201.000000
 
 
 Num failed tests: 0
-Num successful tests: 255
+Num successful tests: 287
 
 Test entire years near the year 0.
 There's no detailed reporting in these cases.
@@ -372,7 +408,7 @@ Testing every day in the year: 11
 Testing every day in the year: 12
 
 Num failed tests: 0
-Num successful tests: 40435
+Num successful tests: 40467
 
-Elapsed time: 17 milliseconds.
+Elapsed time: 13 milliseconds.
 PS C:\johanley\ProjectsVSCode\sofa-julian-date> 
