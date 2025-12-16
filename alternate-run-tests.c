@@ -105,6 +105,8 @@ static void test_both_directions(int y, int m, int d, double fd, double jd1, dou
     test_julian_date_to_yyyy_mm_dd(jd1, jd2, y, m, d, fd, terse_alternate_iauJd2cal, ALTERNATIVE, REPORT);
     test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, iauCal2jd, SOFA, REPORT);
     test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, terse_alternate_iauCal2jd, ALTERNATIVE, REPORT);
+
+    test_yyyy_mm_dd_to_julian_date(y, m, d, fd, jd1 + jd2, iauCal2jdWallace, ALTERNATIVE, REPORT);
     printf("\n");
 }
 
@@ -121,6 +123,8 @@ static void test_entire_year(int y, double jd_jan_0){
             test_julian_date_to_yyyy_mm_dd(jd, 0.0, y, m, d, 0.0, terse_alternate_iauJd2cal, ALTERNATIVE, SILENT);
             test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, iauCal2jd, SOFA, SILENT);
             test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, terse_alternate_iauCal2jd, ALTERNATIVE, SILENT);
+            
+            test_yyyy_mm_dd_to_julian_date(y, m, d, 0.0, jd, iauCal2jdWallace, ALTERNATIVE, SILENT);
         }
     }
 }
